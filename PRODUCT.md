@@ -10,7 +10,7 @@ A Claude Code skill that documents everything we build into a step-by-step how-t
 
 | Item | Status |
 |------|--------|
-| SKILL.md (5-step agent) | DONE ✅ |
+| SKILL.md (6 steps: 0 through 5) | DONE ✅ |
 | PRODUCT.md | DONE ✅ |
 | PRD.md with ASCII architecture | DONE ✅ |
 | Step 0: Context interview (one question) | TESTED ✅ |
@@ -71,7 +71,7 @@ A Claude Code skill that documents everything we build into a step-by-step how-t
 
 ```
 Sucana/Skills/how-to-draft.skill/
-├── SKILL.md      — the agent (5 steps, 333 lines)
+├── SKILL.md      — the agent (6 steps, 357 lines)
 ├── PRODUCT.md    — this file
 └── PRD.md        — full spec with ASCII architecture
 ```
