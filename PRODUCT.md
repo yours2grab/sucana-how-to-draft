@@ -17,9 +17,9 @@ A Claude Code skill that documents everything we build into a step-by-step how-t
 | Step 1: Load voice | TESTED ✅ |
 | Step 2: Extract conversation (PRODUCT.md as source of truth) | TESTED ✅ on 4 builds (dashboard, meeting agent, hooks & angles, SEO pipeline) |
 | Step 3: Structure + write article (9 writing rules merged in) | TESTED ✅ full 14-stage article produced |
-| Step 4: Checker (6 checks × stages + PRODUCT.md cross-check) | TESTED ✅ caught 10 issues, all fixed |
-| Step 5: HTML preview + save to 2 locations | BUILT ✅ |
-| Mandatory jargon list (13 terms) | BUILT ✅ |
+| Step 4: Checker (7 checks × stages + PRODUCT.md cross-check) | TESTED ✅ caught 10 issues, all fixed. 4 eval tests, final = zero issues. |
+| Step 5: HTML preview + save to 2 locations + real Obsidian vault copy | BUILT ✅ |
+| Mandatory jargon list (14 terms) | BUILT ✅ |
 | Mandatory PRODUCT.md stages (create + update) | BUILT ✅ |
 
 ## The 5 Steps
@@ -30,7 +30,7 @@ A Claude Code skill that documents everything we build into a step-by-step how-t
 | 1 | Load Virgil_Voice_MASTER.md |
 | 2 | Extract conversation. PRODUCT.md is source of truth. Document what user said, not what Claude did. |
 | 3 | Structure + write the article. 9 writing rules baked in. Full format: Do this, What happens, We tested this by, Why we did this. |
-| 4 | Checker. 6 checks per stage. PRODUCT.md cross-check. Fix all failures before showing. |
+| 4 | Checker. 7 checks per stage (added prerequisite check). Two-way PRODUCT.md cross-check. Fix all failures before showing. |
 | 5 | Generate HTML preview, open in browser, wait for approval, save .md to both locations. |
 
 ## Key Decisions
@@ -45,6 +45,9 @@ A Claude Code skill that documents everything we build into a step-by-step how-t
 - Two mandatory stages in every article: create PRODUCT.md early, update PRODUCT.md at the end.
 - Missing features from PRODUCT.md get added as stages automatically. Don't ask. Don't flag. Just add.
 - Article shown as HTML preview before saving. User approves in browser.
+- Multi-session builds: ask user which sessions to document. Never guess what happened in a session you can't see.
+- Save to 3 locations: Newsletter Content, Sandbox Virgil Second Brain, real Obsidian vault.
+- Integrated into SEO skill (sucana-seo) as Pattern 8: How-To. SEO skill detects how-to articles and uses this format.
 
 ## Tested On
 
@@ -72,6 +75,20 @@ Sucana/Skills/how-to-draft.skill/
 ├── PRODUCT.md    — this file
 └── PRD.md        — full spec with ASCII architecture
 ```
+
+## SEO Skill Integration
+
+The how-to-draft format is embedded in the SEO skill (sucana-seo) as Pattern 8: How-To. When the SEO skill detects a how-to article (from CSV Format column or title), it:
+1. Scans for an existing how-to-draft output as source material
+2. Translates the "Do this / What happens / We tested / Why" format into Virgil's conversational voice
+3. Runs the 7-point checker + PRODUCT.md cross-check
+4. Adds HowTo schema to the MDX frontmatter
+
+Both skills stay standalone. This skill produces raw material. The SEO skill consumes it and publishes.
+
+## GitHub
+
+`yours2grab/sucana-how-to-draft`
 
 ## Trigger Words
 
